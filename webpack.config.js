@@ -1,16 +1,18 @@
 const Path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackWatchedGlobEntries = require("webpack-watched-glob-entries-plugin");
-const { htmlWebpackPluginTemplateCustomizer } = require("template-ejs-loader");
+// 監視するファイルをオブジェクト形式で格納
 const entries = WebpackWatchedGlobEntries.getEntries(
   [Path.resolve(__dirname, "./src/ejs/*.ejs")],
   { ignore: Path.resolve(__dirname, "./src/ejs/_*.ejs") }
 )();
+// ejsファイルをhtmlファイルに変換する処理
 const htmlGlobPlugins = (entries) => {
   return Object.keys(entries).map((key) => {
     return new HtmlWebpackPlugin({
       filename: `${key}.html`,
       template: `./src/ejs/${key}.ejs`,
+      inject: "body" // bodyタグ直前にscriptタグを設置
     });
   });
 };

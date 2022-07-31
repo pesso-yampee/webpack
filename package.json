@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack && html-beautify dist/*.html",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "ejs-html-loader": "github:bananacoffee/ejs-html-loader",
     "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "js-beautify": "^1.14.4",
     "template-ejs-loader": "^0.9.3",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
